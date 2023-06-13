@@ -1,39 +1,34 @@
 
-const { uploadText, resep, resepId } = require('./handler')
-
-
+const {
+  uploadText, searchResep, getText, searchResepById,
+} = require('./handler');
 
 const routes = [
-    {
-        method: 'GET',
-        path: '/',
-        handler: (request, h) => {
-            return h.file('./html/home.html')
-        }
-    },
-    {
-        method: 'GET',
-        path: '/picture',
-        handler: (request, h) => {
-            return h.file('./html/upload.html')
-        }
-    },
-    {
-        method: 'POST',
-        path: '/uploadtext',
-        handler: uploadText,
-
-    },
-    {
-        method: 'GET',
-        path: '/resep',
-        handler: resep,
-    },
-    {
-        method: 'GET',
-        path: '/resep/{id}',
-        handler: resepId,
-    }
+  {
+    method: 'GET',
+    path: '/',
+    handler: () => '<h1>Welcome to Cookmate API</h1>',
+  },
+  {
+    method: 'POST',
+    path: '/upload',
+    handler: uploadText,
+  },
+  {
+    method: 'GET',
+    path: '/text',
+    handler: getText,
+  },
+  {
+    method: 'GET',
+    path: '/resep',
+    handler: searchResep,
+  },
+  {
+    method: 'GET',
+    path: '/getresep/{documentId}',
+    handler: searchResepById,
+  },
 ];
 
-module.exports = routes;
+module.exports = { routes };
